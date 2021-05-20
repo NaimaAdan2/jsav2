@@ -4,47 +4,53 @@ function addToArray(jsav, jsavArray, value) {
 
     jsavArray.hide()
     return jsav.ds.array(newArr) 
-
 }
-function poppedArray(jsav, jsavArray, value) {
+
+
+function poppedArray(jsav, jsavArray) {
     var newArr = jsavArray._values
-    newArr.pop(value)
+    newArr.pop()
    
     jsavArray.hide()
-    return jsav.ds.array(newArr,)
-
+    return jsav.ds.array(newArr)
 }
 
 
 function run() {
-
-    var jsav = new JSAV("container");
-    var myArr = []
+    let pushElement = document.getElementById("push");
+    let popElement = document.getElementById("pop");
+    let jsav = new JSAV("container");
+    let jsavArr = jsav.ds.array([]);
     let topPointer;
-    jsavArr = jsav.ds.array(myArr);
-    var pushElement = document.getElementById("push");
+    let bottomPointer;
+
+
     pushElement.addEventListener("click", function() {
-        var input = document.getElementById("userInput")
-        var valueToAdd = input.value
+        let input = document.getElementById("userInput")
+        let valueToAdd = input.value
         jsavArr = addToArray(jsav, jsavArr, valueToAdd)
-      
         if (topPointer) {
           topPointer.hide()
         }
+        if (bottomPointer) {
+          bottomPointer.hide()
+        }
+        
+        bottomPointer = jsav.pointer("Bottom", jsavArr.index(0), {arrowAnchor: "left top"})
         topPointer = jsav.pointer("Top", jsavArr.index(jsavArr.size() - 1), {arrowAnchor: "left top"})
       })
 
-      var newArr = []
-      jsavArr = jsav.ds.array(newArr);
-      var popElement = document.getElementById("pop");
       popElement.addEventListener("click", function() {
-          var input = document.getElementById("userInput")
-          var valueToRemove = input.value
-          jsavArr = poppedArray(jsav, jsavArr, valueToRemove) 
+          jsavArr = poppedArray(jsav, jsavArr) 
          
           if (topPointer) {
             topPointer.hide()
           }
+          if (bottomPointer) {
+            bottomPointer.hide()
+          }
+  
+          bottomPointer = jsav.pointer("Bottom", jsavArr.index(0), {arrowAnchor: "left top"})
           topPointer = jsav.pointer("Top", jsavArr.index(jsavArr.size() - 1), {arrowAnchor: "left top"})
       })
 }
