@@ -1,3 +1,4 @@
+// Workaround since JSAV does not support adding to array datastructure
 function addToArray(jsav, jsavArray, value) {
     var newArr = jsavArray._values
     newArr.push(value)
@@ -6,7 +7,7 @@ function addToArray(jsav, jsavArray, value) {
     return jsav.ds.array(newArr) 
 }
 
-
+// Workaround since JSAV does not support adding to array datastructure
 function poppedArray(jsav, jsavArray) {
     var newArr = jsavArray._values
     newArr.pop()
@@ -16,45 +17,52 @@ function poppedArray(jsav, jsavArray) {
 }
 
 
-function run() {
+function initiliaseStackVisualisation() {
+    // Initialise JSAV container and control buttons
     let pushElement = document.getElementById("push");
     let popElement = document.getElementById("pop");
     let jsav = new JSAV("container");
     let jsavArr = jsav.ds.array([]);
-    let topPointer;
-    let bottomPointer;
+    // Initialise JSAV pointers
+    let headPointer;
+    let tailPointer;
 
 
+    // When a user clicks "push" add new value to the array and update pointers
     pushElement.addEventListener("click", function() {
         let input = document.getElementById("userInput")
         let valueToAdd = input.value
         jsavArr = addToArray(jsav, jsavArr, valueToAdd)
-        if (topPointer) {
-          topPointer.hide()
+        
+        // Hide old pointers and create new pointers
+        if (headPointer) {
+          headPointer.hide()
         }
-        if (bottomPointer) {
-          bottomPointer.hide()
+        if (tailPointer) {
+          tailPointer.hide()
         }
         
-        bottomPointer = jsav.pointer("Bottom", jsavArr.index(0), {arrowAnchor: "left top"})
-        topPointer = jsav.pointer("Top", jsavArr.index(jsavArr.size() - 1), {arrowAnchor: "left top"})
+        tailPointer = jsav.pointer("Tail", jsavArr.index(0), {arrowAnchor: "left top"})
+        headPointer = jsav.pointer("Head", jsavArr.index(jsavArr.size() - 1), {arrowAnchor: "left top"})
       })
 
+      // When a user clicks "pop" remove value at head of the array and update pointers
       popElement.addEventListener("click", function() {
           jsavArr = poppedArray(jsav, jsavArr) 
          
-          if (topPointer) {
-            topPointer.hide()
+          // Hide old pointers and create new pointers
+          if (headPointer) {
+            headPointer.hide()
           }
-          if (bottomPointer) {
-            bottomPointer.hide()
+          if (tailPointer) {
+            tailPointer.hide()
           }
   
-          bottomPointer = jsav.pointer("Bottom", jsavArr.index(0), {arrowAnchor: "left top"})
-          topPointer = jsav.pointer("Top", jsavArr.index(jsavArr.size() - 1), {arrowAnchor: "left top"})
+          tailPointer = jsav.pointer("Tail", jsavArr.index(0), {arrowAnchor: "left top"})
+          headPointer = jsav.pointer("Head", jsavArr.index(jsavArr.size() - 1), {arrowAnchor: "left top"})
       })
 }
-run()
+initiliaseStackVisualisation()
 
 
 
