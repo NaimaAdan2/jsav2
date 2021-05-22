@@ -1,11 +1,7 @@
 /*global JSAV, jQuery */
-(function() {
+(function($) {
     "use strict";
-    // events to register as functions on tree
-
-    // Initialise JSAV container and control buttons
-    var runButton = document.getElementById("run")
-    var resetButton = document.getElementById("reset")
+    if (typeof JSAV === "undefined") { return; }
 
     // Code shown as part of the example, during bubble sort visualisation
     var codeArr = [
@@ -20,29 +16,31 @@
         "}"
     ]
 
-    // When a user clicks run, we validate and format inputs and run bubble sort visualisation
-    runButton.addEventListener("click", function() {
+
+    function setupListeners() {
+        var runButton = document.getElementById("run")
+        var resetButton = document.getElementById("reset")
+        if (!runButton || !resetButton) {
+            return;
+        }
         var input = document.getElementById("userInput")
         var str = input.value;
-        // if no commas and spaces are present
         if (str.indexOf(",") == -1 && str.indexOf(" ") != -1) {
             alert("User specified input should contain commas instead of spaces: " + str)
             return;
         }
-
-        var formattedString = str.split("").filter(e => e != " ").join("")        
+        var formattedString = str.split("").filter(function(e) { return e != " "}).join("")
         var arr = formattedString.split(",");
 
         runBubbleSort(arr);
         runButton.disabled = true;
-    })
 
-    resetButton.addEventListener("click", function () {
-        location.reload();
-    })
+        resetButton.addEventListener("click", function () {
+            location.reload();
+        })
+    }
 
-    function runBubbleSort(jsav, arr) {
-        var jsavArr = jsav.ds.array(arr, {layout: "bar"});
+    function runBubbleSort(jsav, jsavArr) {
         var code = jsav.code(codeArr)
         code.setCurrentLine(1)
         jsav.umsg("Starting bubble sort");
@@ -75,5 +73,7 @@
         jsav.recorded();
     }
 
-    JSAV.ext.bubbleSort = runBubbleSort
-  }());
+    setupListeners()
+
+    JSAV.ext.bubblesort = runBubbleSort
+  }(jQuery));
