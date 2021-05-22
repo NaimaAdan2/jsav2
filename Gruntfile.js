@@ -2,8 +2,8 @@
 module.exports = function(grunt) {
   "use strict";
 
-  var BUILD_DIR = 'build/',
-      SRC_DIR = 'src/';
+  var BUILD_DIR = 'public/lib/',
+      SRC_DIR = 'public/lib/';
 
   // autoload all grunt tasks in package.json
   require('load-grunt-tasks')(grunt);
@@ -37,7 +37,6 @@ module.exports = function(grunt) {
               SRC_DIR + 'graph.js',
               SRC_DIR + 'matrix.js',
               SRC_DIR + 'code.js',
-              SRC_DIR + 'hussein.js',
               SRC_DIR + 'settings.js',
               SRC_DIR + 'questions.js',
               SRC_DIR + 'exercise.js',
@@ -60,7 +59,7 @@ module.exports = function(grunt) {
       files: ['test/index.html']
     },
     jshint: { // for linting the JS
-      sources: ['Gruntfile.js', 'src/*.js'],
+      sources: ['Gruntfile.js', 'public/lib/*.js'],
       tests: ['test/**/*.js']
     },
     csslint: { // for linting the CSS
@@ -70,12 +69,12 @@ module.exports = function(grunt) {
     },
     exec: {
       version: "git describe --tags --long | awk '{ printf \"%s\", $0 }' > " + SRC_DIR + "version.txt",
-      front: "cat src/front1.txt src/version.txt src/front2.txt > src/front.js",
-      versionjs: "cat src/version1.txt src/version.txt src/version2.txt > src/version.js"
+      front: "cat public/lib/front1.txt public/lib/version.txt public/lib/front2.txt > public/lib/front.js",
+      versionjs: "cat public/lib/version1.txt public/lib/version.txt public/lib/version2.txt > public/lib/version.js"
     },
     watch: {
       jssrc: {
-        files: ['src/*.js'],
+        files: ['public/lib/*.js'],
         tasks: ['default']
       }
     }
