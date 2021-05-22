@@ -42,7 +42,8 @@ module.exports = function(grunt) {
               SRC_DIR + 'questions.js',
               SRC_DIR + 'exercise.js',
               SRC_DIR + 'version.js',
-              SRC_DIR2 + 'bubblesort.js'],
+              SRC_DIR2 + 'bubblesort.js',
+              SRC_DIR2 + 'insertionsort.js'],
         dest: BUILD_DIR + 'JSAV.js'
       }
     },
