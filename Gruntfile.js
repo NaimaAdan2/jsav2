@@ -44,7 +44,8 @@ module.exports = function(grunt) {
               SRC_DIR + 'version.js',
               SRC_DIR2 + 'bubblesort.js',
               SRC_DIR2 + 'insertionsort.js',
-              SRC_DIR2 + 'mergesort.js'],
+              SRC_DIR2 + 'mergesort.js',
+              SRC_DIR2 + 'queue.js'],
         dest: BUILD_DIR + 'JSAV.js'
       }
     },
