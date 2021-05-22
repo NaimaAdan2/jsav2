@@ -3,18 +3,24 @@
   "use strict";
   if (typeof JSAV === "undefined") { return; }
 
-  // Initialise JSAV container and control buttons
-  var pushElement = document.getElementById("push");
-  var popElement = document.getElementById("pop");
-  // Initialise JSAV pointers
-  var headPointer;
-  var tailPointer;
+
 
   
   function setupListeners() {
+    // Initialise JSAV container and control buttons
+    var pushElement = document.getElementById("push");
+    var popElement = document.getElementById("pop");
+    // Initialise JSAV pointers
+    var headPointer;
+    var tailPointer;
+
     if (!pushElement || !popElement) {
         return;
     }
+
+    var jsav = new JSAV("container");
+    var jsavArr = jsav.ds.array([]);
+
     // When a user clicks "push" add new value to the array and update pointers
     pushElement.addEventListener("click", function() {
       var input = document.getElementById("userInput")
@@ -67,6 +73,9 @@
       jsavArray.hide()
       return jsav.ds.array(newArr)
   }
+
+  setupListeners()
+
   JSAV.ext.push = addToArray
   JSAV.ext.pop = poppedArray
 }(jQuery));

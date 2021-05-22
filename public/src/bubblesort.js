@@ -23,17 +23,23 @@
         if (!runButton || !resetButton) {
             return;
         }
-        var input = document.getElementById("userInput")
-        var str = input.value;
-        if (str.indexOf(",") == -1 && str.indexOf(" ") != -1) {
-            alert("User specified input should contain commas instead of spaces: " + str)
-            return;
-        }
-        var formattedString = str.split("").filter(function(e) { return e != " "}).join("")
-        var arr = formattedString.split(",");
 
-        runBubbleSort(arr);
-        runButton.disabled = true;
+        runButton.addEventListener("click", function() {
+            var input = document.getElementById("userInput")
+            var str = input.value;
+            if (str.indexOf(",") == -1 && str.indexOf(" ") != -1) {
+                alert("User specified input should contain commas instead of spaces: " + str)
+                return;
+            }
+            var formattedString = str.split("").filter(function(e) { return e != " "}).join("")
+            var arr = formattedString.split(",");
+            var jsav = new JSAV("container");
+            var jsavArr = jsav.ds.array(arr, {layout: "bar"});
+    
+            runBubbleSort(jsav, jsavArr);
+            runButton.disabled = true;
+        })
+
 
         resetButton.addEventListener("click", function () {
             location.reload();

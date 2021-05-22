@@ -33,8 +33,10 @@
     
             var formattedString = str.split("").filter(function(e) { return e != " "}).join("")        
             var arr = formattedString.split(",");
+            var jsav = new JSAV("container");
+            var jsavArr = jsav.ds.array(arr, {layout: "bar"});
     
-            runInsertionSort(arr);
+            runInsertionSort(jsav, jsavArr);
             document.getElementById("run").disabled = true;
         })
         resetButton.addEventListener("click", function () {
