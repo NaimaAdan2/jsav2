@@ -3,7 +3,8 @@ module.exports = function(grunt) {
   "use strict";
 
   var BUILD_DIR = 'public/lib/',
-      SRC_DIR = 'public/lib/';
+      SRC_DIR = 'public/lib/',
+      SRC_DIR2 = 'public/src';
 
   // autoload all grunt tasks in package.json
   require('load-grunt-tasks')(grunt);
@@ -40,7 +41,8 @@ module.exports = function(grunt) {
               SRC_DIR + 'settings.js',
               SRC_DIR + 'questions.js',
               SRC_DIR + 'exercise.js',
-              SRC_DIR + 'version.js'],
+              SRC_DIR + 'version.js',
+              SRC_DIR2 + 'bubblesort.js'],
         dest: BUILD_DIR + 'JSAV.js'
       }
     },

@@ -4,8 +4,9 @@ MINIMIZE = uglifyjs $(TARGET)/JSAV.js --comments '/^!|@preserve|@license|@cc_on/
 CAT = cat
 SRC = public/lib
 TARGET = public/lib
+SRC2 = public/src
 
-SOURCES = $(SRC)/front.js $(SRC)/core.js $(SRC)/translations.js $(SRC)/anim.js $(SRC)/utils.js $(SRC)/messages.js $(SRC)/effects.js $(SRC)/events.js $(SRC)/graphicals.js $(SRC)/datastructures.js $(SRC)/array.js $(SRC)/tree.js $(SRC)/list.js $(SRC)/graph.js $(SRC)/matrix.js $(SRC)/code.js $(SRC)/settings.js $(SRC)/questions.js $(SRC)/exercise.js $(SRC)/version.js
+SOURCES = $(SRC)/front.js $(SRC)/core.js $(SRC)/translations.js $(SRC)/anim.js $(SRC)/utils.js $(SRC)/messages.js $(SRC)/effects.js $(SRC)/events.js $(SRC)/graphicals.js $(SRC)/datastructures.js $(SRC)/array.js $(SRC)/tree.js $(SRC)/list.js $(SRC)/graph.js $(SRC)/matrix.js $(SRC)/code.js $(SRC)/settings.js $(SRC)/questions.js $(SRC)/exercise.js $(SRC)/version.js $(SRC2)/bubblesort.js
 
 # This only works right when this is a submodule
 	FETCH = ../.git/modules/JSAV/FETCH_HEAD

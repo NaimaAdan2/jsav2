@@ -22,7 +22,7 @@
   templates["bar-indexed"] = templates.bar + '<span class="jsavindexlabel">{{index}}</span>';
 
 
-  var ArrayIndex = function(container, value, index, options) {
+  var ArrayIndex = function(container, value, index, options) { 
     this.jsav = container.jsav;
     this.container = container;
     this.index = index;
