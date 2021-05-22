@@ -1,5 +1,5 @@
 RM = rm -rf
-LIB = lib
+LIB = public/lib
 MINIMIZE = uglifyjs $(TARGET)/JSAV.js --comments '/^!|@preserve|@license|@cc_on/i' >$(TARGET)/JSAV-min.js
 CAT = cat
 SRC = public/lib
@@ -13,11 +13,8 @@ SOURCES = $(SRC)/front.js $(SRC)/core.js $(SRC)/translations.js $(SRC)/anim.js $
 all: build
 
 clean:
-	$(RM) *~
-	$(RM) build/*
-	$(RM) examples/*~
 	$(RM) public/lib/*~ public/lib/version.txt public/lib/front.js public/lib/version.js
-	$(RM) css/*~
+
 
 build: $(TARGET)/JSAV.js $(TARGET)/JSAV-min.js
 

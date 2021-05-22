@@ -51,7 +51,7 @@ module.exports = function(grunt) {
           mangle: false
         },
         files: {
-          'build/JSAV-min.js': [BUILD_DIR + 'JSAV.js']
+          'public/lib/JSAV-min.js': [BUILD_DIR + 'JSAV.js']
         }
       }
     },
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
     },
     csslint: { // for linting the CSS
       jsav: {
-        src: ['css/JSAV.css']
+        src: ['public/css/JSAV.css']
       }
     },
     exec: {
