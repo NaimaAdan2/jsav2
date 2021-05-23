@@ -11,7 +11,7 @@
         var deleteButton = document.getElementById("remove")
         var userInput = document.getElementById("userInput")
 
-        if (!runButton || !resetButton) {
+        if (!insertButton || !deleteButton) {
             return;
         }
 
