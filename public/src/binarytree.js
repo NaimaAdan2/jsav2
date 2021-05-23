@@ -3,57 +3,63 @@
     "use strict";
     if (typeof JSAV === "undefined") { return; }
 
-    // Initialise JSAV and control buttons
-    let jsav = new JSAV("av");
-    let bt = jsav.ds.binarytree();
-    let insertButton = document.getElementById("insert")
-    let deleteButton = document.getElementById("remove")
-    let userInput = document.getElementById("userInput")
+    function setupListeners() {
+        // Initialise JSAV and control buttons
+        var jsav = new JSAV("av");
+        var bt = jsav.ds.binarytree();
+        var insertButton = document.getElementById("insert")
+        var deleteButton = document.getElementById("remove")
+        var userInput = document.getElementById("userInput")
 
-    // When a user clicks the insert button, inserts a new node into the binary tree
-    insertButton.addEventListener("click", () => {
-        // Performs sanitation on input, so that all values are integers
-        let value = parseInt(userInput.value)
-        // Alerts the user if invalid input
-        if (isNaN(value)) {
-            alert("Invalid input. Integer required")
+        if (!runButton || !resetButton) {
             return;
         }
-        // Either creates a new root node or inserts new value into the existing tree
-        if (bt.root().value()) {
-            addNode(value, bt.root(), bt)
-        } else {
-            bt.root(value)
-        }
-        bt.show()
-        // Resets user input
-        userInput.value = ""
-        // Refresh JSAV layout
-        bt.layout()
-    })
 
-    // When a user clicks the delete button, deletea the new node from the binary tree
-    deleteButton.addEventListener("click", () => {
-        // Performs sanitation on input, so that all values are integers
-        let value = parseInt(userInput.value)
-        // Alerts the user if invalid input
-        if (isNaN(value)) {
-            alert("Invalid input. Integer required")
-        }
-        let newRoot = deleteNode(bt.root(), value, bt)
-        // Reset root node depending on if the root node is what is being deleted
-        if (!newRoot) {
-            bt.root().remove()
-        } else {
-            bt.root(newRoot)
-        }
-        bt.show()
+        // When a user clicks the insert button, inserts a new node into the binary tree
+        insertButton.addEventListener("click", () => {
+            // Performs sanitation on input, so that all values are integers
+            var value = parseInt(userInput.value)
+            // Alerts the user if invalid input
+            if (isNaN(value)) {
+                alert("Invalid input. Integer required")
+                return;
+            }
+            // Either creates a new root node or inserts new value into the existing tree
+            if (bt.root().value()) {
+                addNode(value, bt.root(), bt)
+            } else {
+                bt.root(value)
+            }
+            bt.show()
+            // Resets user input
+            userInput.value = ""
+            // Refresh JSAV layout
+            bt.layout()
+        })
 
-        // Reset user input
-        userInput.value = ""
-        // Refresh JSAV layout
-        bt.layout()
-    })
+        // When a user clicks the delete button, deletea the new node from the binary tree
+        deleteButton.addEventListener("click", () => {
+            // Performs sanitation on input, so that all values are integers
+            var value = parseInt(userInput.value)
+            // Alerts the user if invalid input
+            if (isNaN(value)) {
+                alert("Invalid input. Integer required")
+            }
+            var newRoot = deleteNode(bt.root(), value, bt)
+            // Reset root node depending on if the root node is what is being deleted
+            if (!newRoot) {
+                bt.root().remove()
+            } else {
+                bt.root(newRoot)
+            }
+            bt.show()
+
+            // Reset user input
+            userInput.value = ""
+            // Refresh JSAV layout
+            bt.layout()
+        })
+    }
 
     // Delete node with value, value and return root node
     function deleteNode(node, value) {
@@ -72,7 +78,7 @@
             } else if (!node.right()) {
                 return node.left() ? node.left() : null
             } else {
-                let leftMostChild = findLeftMostChild(node.right())
+                var leftMostChild = findLeftMostChild(node.right())
                 node.value(leftMostChild.value())
                 node.right(deleteNode(node.right(), node.value()))
             }
@@ -108,13 +114,6 @@
 
     setupListeners()
 
-    JSAV.ext.bubblesort = runBubbleSort
+    JSAV.ext.addnode = addNode
+    JSAV.ext.deletenode = deleteNode
 }(jQuery));
-
-
-
-// Pointers too high (put at the bottom)
-// Understanding the recursion
-// Refactoring sorting
-// Deploying
-// Unit tests
