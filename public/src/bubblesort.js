@@ -55,7 +55,7 @@
             jsav.umsg("Starting pass " + parseInt(numTimes + 1));
             jsav.step();
             code.setCurrentLine(3)
-            jsav.umsg("For every element do some stuff");
+            jsav.umsg("For every element compare and swap");
             jsav.step();
             for (var swapIndex = 0; swapIndex < jsavArr.size() - 1; swapIndex++) {
                 jsav.umsg("Compare elements");
