@@ -34,6 +34,20 @@
     
             var formattedString = str.split("").filter(function(e) { return e != " "}).join("")        
             var arr = formattedString.split(",").map(function(e) { return parseInt(e)});
+
+            var isValidInput = true
+
+            for (var i = 0; i < arr.length; i++) {
+                if (isNaN(arr[i])) {
+                    isValidInput = false
+                }
+            }
+
+            if (!isValidInput) {
+                alert("Invalid array detected. Array must only contain integer values")
+                return
+            }
+
             var jsav = new JSAV("container");
             var jsavArr = jsav.ds.array(arr, {layout: "bar"});
     
@@ -44,9 +58,6 @@
             location.reload();
         })
     }
-
-
-
 
     function setProcessing(arr, index) {
         arr.addClass(index, "processing");
