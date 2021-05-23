@@ -2,9 +2,6 @@
 (function($) {
   "use strict";
   if (typeof JSAV === "undefined") { return; }
-
-
-
   
   function setupListeners() {
     // Initialise JSAV container and control buttons
