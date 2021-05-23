@@ -16,7 +16,6 @@
         "}"
     ]
 
-
     function setupListeners() {
         var runButton = document.getElementById("run")
         var resetButton = document.getElementById("reset")
@@ -32,7 +31,7 @@
                 return;
             }
             var formattedString = str.split("").filter(function(e) { return e != " "}).join("")
-            var arr = formattedString.split(",");
+            var arr = formattedString.split(",").map(function(e) { return parseInt(e)});
             var jsav = new JSAV("container");
             var jsavArr = jsav.ds.array(arr, {layout: "bar"});
     
